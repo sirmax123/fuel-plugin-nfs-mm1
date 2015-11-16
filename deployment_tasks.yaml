@@ -1,0 +1,31 @@
+- id: fuel-plugin-nfs-mm1
+  type: group
+  role: [fuel-plugin-nfs-mm1]
+  requires: [deploy_start]
+  required_for: [deploy_end, primary-controller, controller]
+  tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig, hosts, firewall]
+  parameters:
+    strategy:
+      type: one_by_one
+
+- id: fuel-plugin-nfs-mm1-deployment-puppet
+  type: puppet
+  groups: [fuel-plugin-nfs-mm1]
+  required_for: [deploy_end]
+  requires: [netconfig]
+  parameters:
+    puppet_manifest: "puppet/manifests/nfs-server.pp"
+    puppet_modules: "puppet/modules:/etc/puppet/modules"
+    timeout: 3600
+
+
+- id: fuel-plugin-nfs-mm1-deployment-cinder-nfs
+  type: puppet
+  groups: [primary-controller, controller]
+  required_for: [deploy_end]
+  requires: [openstack-cinder]
+  parameters:
+    puppet_manifest: "puppet/manifests/enable-cinder-nfs.pp"
+    puppet_modules: "puppet/modules:/etc/puppet/modules"
+    timeout: 3600
+

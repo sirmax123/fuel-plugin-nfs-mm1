@@ -1,0 +1,6 @@
+fuel-plugin-nfs-mm1:
+  name: "NFS Server"
+  description: "NFS Server"
+  has_primary: false
+  public_ip_required: false
+  weight: 1000

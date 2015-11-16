@@ -1,0 +1,7 @@
+attributes:
+  nfs-share-name:
+    value: "/data"
+    label: "nfs-share-name"
+    description: "NFS share name"
+    weight: 10
+    type: "text"
