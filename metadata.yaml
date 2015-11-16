@@ -9,7 +9,7 @@ fuel_version: ['7.0']
 licenses: ['Apache License Version 2.0']
 authors: ['mm']
 homepage: 'https://github.com/stackforge/fuel-plugins'
-groups: [storage::cinder]
+groups: []
 
 # The plugin is compatible with releases in the list
 releases:
